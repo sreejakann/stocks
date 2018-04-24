@@ -1,0 +1,38 @@
+.jumbotron {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    color: black;
+    background-color: darkcyan;
+    width:400px;
+    top:75px;
+    margin:0 auto;
+    box-shadow: 0 0 150px 150px #555;
+    border-color: #ebccd1;
+    border: 5px solid transparent;
+    border-radius: 25px;
+}
+
+.container {
+    background-color: darkcyan;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    border: 5px solid transparent;
+}
+
+
+.form-control {
+  margin-left: 40px;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-left: 40px;
+}
+
+.title {
+  font-size: 120%;
+  margin-left: 70px;
+}
