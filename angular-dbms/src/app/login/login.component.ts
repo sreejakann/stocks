@@ -33,8 +33,6 @@ export class LoginComponent implements OnInit {
   		console.log(e);
   		const username = e.username;
   		const password = e.password;
-    	this.signinUser.username = username;
-    	this.signinUser.password = password;
     	this.user.loginUser(username, password)
     	  .subscribe(status => {
           	this.router.navigate(['home']);

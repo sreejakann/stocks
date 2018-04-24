@@ -10,6 +10,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
+import { StockService } from './services/stocks.service';
+import {DataSource} from '@angular/cdk/collections';
 
 import {
   MatAutocompleteModule,
@@ -61,7 +63,8 @@ export const router: Routes = [
     )
   ],
   providers: [
-  UserService
+  UserService,
+  StockService
   ],
   bootstrap: [
   AppComponent,

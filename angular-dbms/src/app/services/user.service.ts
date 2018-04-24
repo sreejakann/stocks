@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Rx';
 import { map } from 'rxjs/operators';
 import { User } from '../user';
+import { Stocks } from '../stocks';
 
 
 
@@ -15,17 +17,14 @@ export class UserService {
 
     loginUser(username: string, password: string) {
       const headers = new Headers();
-      headers.append('Content-Type', 'application/json');
       headers.append('access-control-allow-origin', '*');
-      return this.http.get('http://874791a2.ngrok.io/StocksApp/rest/StocksAPI/login?username={username}&password={password}')
+
+      let url = "http://874791a2.ngrok.io/StocksApp/rest/StocksAPI/login?username=" + username 
+        + "&password=" + password;
+
+      return this.http.get(url, {headers: headers})
       .map((response: Response) => {
-          // login successful if there's a jwt token in the response
           let user = response.json();
-          if (user && user.token) {
-              // store user details and jwt token in local storage to keep user logged in between page refreshes
-              localStorage.setItem('currentUser', JSON.stringify(user));
-              console.log(localStorage.getItem('currentUser'));
-            }
       });
     }
 
@@ -36,7 +35,9 @@ export class UserService {
         + "&password=" + user.password;
 
         console.log(url);
-        return this.http.get('https://874791a2.ngrok.io/StocksApp/rest/StocksAPI/getStocks')
+        const headers = new Headers();
+        headers.append('access-control-allow-origin', '*');
+        return this.http.get(url, {headers: headers})
         .map((response: Response) => {
           let user = response.json();
           console.log(user);
