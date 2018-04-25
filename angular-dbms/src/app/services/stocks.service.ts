@@ -16,7 +16,7 @@ export class StockService {
   private losersUrl = 'http://874791a2.ngrok.io/StocksApp/rest/StocksAPI/topLosers';
   private gainersUrl = 'http://874791a2.ngrok.io/StocksApp/rest/StocksAPI/topGainers';
   private favoritesUrl = 'http://874791a2.ngrok.io/StocksApp/rest/StocksAPI/getFavorites?userId=';
-
+  private symUrl = 'http://874791a2.ngrok.io/StocksApp/rest/StocksAPI/getFavoriteSymbolsString?userId=';
   
   
  constructor(private http: Http) { }
@@ -28,6 +28,8 @@ export class StockService {
     return this.http.get(this.stocksUrl, {headers:headers})
     .map(res => res.json());
   }
+
+  
 
   getLosers(): Observable<Losers[]> {
   	console.log("test local storage");
@@ -88,6 +90,16 @@ export class StockService {
         });
 
    }
+
+   getSymbols() {
+  	const headers = new Headers();
+  	headers.append('access-control-allow-origin', '*');
+  	let userId = JSON.parse(localStorage.getItem('currentUser')).userId;
+  	let url = this.symUrl+userId;
+
+  	return this.http.get(url,{headers:headers})
+  	.map(res => res.json());
+  }
 
   
 }

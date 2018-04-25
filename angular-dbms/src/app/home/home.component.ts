@@ -22,15 +22,17 @@ import {DataSource} from '@angular/cdk/collections';
 export class HomeComponent implements OnInit {
 
   public searchString: string;
-  
-  public isVisible: boolean = true;
 
+  idArr = [];
+
+  public isVisible:boolean = true;
   displayedColumns = ['symbol', 'stock_id', 'dt', 'opening','high', 'low','closing','volume', 'actions', 'trends'];
   dataSource = new MatTableDataSource();
 
   username = JSON.parse(localStorage.getItem('currentUser')).username;
 
   ngOnInit() {
+
     this.stockService.getStocks().subscribe(
     data => {
     this.dataSource.data = data;
@@ -40,7 +42,12 @@ export class HomeComponent implements OnInit {
 
   }
 
+  contains(id){
+    return this.idArr.indexOf(id) == -1;
+  }
   addFav(e){
+    this.idArr.push(e.stock_id);
+    //localStorage.setItem('id_list',id_arr);
     this.isVisible = !this.isVisible;
     console.log("Clicked Follow button for:");
     console.log(e);

@@ -3,6 +3,7 @@
 
   <span class="toolbar">
     <button style="margin-left:800px;" mat-button color="blue">{{username}}</button>
+    <button style="margin-left:900px;" mat-button color="blue" (click) ="getCount()"> count </button>
   </span>
 </mat-toolbar>
 
@@ -60,8 +61,8 @@
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef> Follow </mat-header-cell>
       <mat-cell *matCellDef="let row" >
-         <button mat-raised-button color="warn" *ngIf="isVisible" (click) = "addFav(row)">Follow </button> 
-         <button mat-raised-button color="grey" *ngIf="!isVisible"> Following </button> 
+         <button mat-raised-button color="warn" *ngIf="contains(row.stock_id)" (click) = "addFav(row)">Follow </button> 
+         <button mat-raised-button color="grey" *ngIf="!contains(row.stock_id)"> Following </button> 
       </mat-cell>
     </ng-container>
 
