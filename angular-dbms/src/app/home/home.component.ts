@@ -7,6 +7,7 @@ import { Favorites } from '../favorites';
 import { UserService } from '../services/user.service';
 import { StockService } from '../services/stocks.service';
 import {MatTableDataSource} from '@angular/material';
+import {MatButtonModule} from '@angular/material';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -21,11 +22,12 @@ export class HomeComponent implements OnInit {
 
   public searchString: string;
   
+  public isVisible: boolean = true;
 
- 
-
-  displayedColumns = ['stock_id', 'dt', 'opening','high', 'low','closing','volume', 'symbol'];
+  displayedColumns = ['stock_id', 'dt', 'opening','high', 'low','closing','volume', 'symbol', 'actions'];
   dataSource = new MatTableDataSource();
+
+  username = JSON.parse(localStorage.getItem('currentUser')).username;
 
   ngOnInit() {
     this.stockService.getStocks().subscribe(
@@ -35,6 +37,14 @@ export class HomeComponent implements OnInit {
     );
 
 
+  }
+
+  addFav(e){
+    this.isVisible = !this.isVisible;
+    console.log("Clicked Follow button for:");
+    console.log(e);
+    this.stockService.addFav(e.stock_id)
+        .subscribe();
   }
   
 
@@ -46,7 +56,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private stockService : StockService) { }
 
-  fav_columns = ['company', 'closing', 'performance'];
+  fav_columns = ['stockName', 'price', 'change'];
   favSource = new FavoritesDataSource(this.stockService);
 
   gainers_columns = ['company','stockPrice'];

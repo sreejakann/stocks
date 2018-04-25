@@ -1,5 +1,5 @@
 export interface Favorites {
-  company: string;
-  closing: number;
-  performance: string;
+  stockName: string;
+  price: number;
+  change: string;
 }

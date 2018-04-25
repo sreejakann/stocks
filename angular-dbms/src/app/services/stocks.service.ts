@@ -15,7 +15,9 @@ export class StockService {
   private stocksUrl = 'http://874791a2.ngrok.io/StocksApp/rest/StocksAPI/getStocks';
   private losersUrl = 'http://874791a2.ngrok.io/StocksApp/rest/StocksAPI/topLosers';
   private gainersUrl = 'http://874791a2.ngrok.io/StocksApp/rest/StocksAPI/topGainers';
-  private favoritesUrl = 'http://874791a2.ngrok.io/StocksApp/rest/StocksAPI/getFavorites?userId=41';
+  private favoritesUrl = 'http://874791a2.ngrok.io/StocksApp/rest/StocksAPI/getFavorites?userId=';
+
+  
   
  constructor(private http: Http) { }
   
@@ -28,6 +30,7 @@ export class StockService {
   }
 
   getLosers(): Observable<Losers[]> {
+  	console.log("test local storage");
   	const headers = new Headers();
   	headers.append('access-control-allow-origin', '*');
 
@@ -45,13 +48,31 @@ export class StockService {
   }
 
   getFavorites(): Observable<Favorites[]> {
+  	console.log("inside get favorites");
+  	console.log(JSON.parse(localStorage.getItem('currentUser')).username);
+  	let userId = JSON.parse(localStorage.getItem('currentUser')).userId;
+  	let url = this.favoritesUrl+userId;
+  	console.log(url);
   	const headers = new Headers();
   	headers.append('access-control-allow-origin', '*');
 
-  	return this.http.get(this.favoritesUrl, {headers:headers})
+  	return this.http.get(url, {headers:headers})
   	.map(res => res.json());
   }
 
+  addFav(symbol: string) {
+        console.log("inside add fav");
+        let userId = JSON.parse(localStorage.getItem('currentUser')).userId;
+        let url = "http://874791a2.ngrok.io/StocksApp/rest/StocksAPI/putFavorites?userId=" + userId 
+        + "&symbol=" + symbol;
+        console.log(url);
+        const headers = new Headers();
+        headers.append('access-control-allow-origin', '*');
+        return this.http.get(url, {headers: headers})
+        .map((response: Response) => {
+          
+        });
+    }
 
   
 }

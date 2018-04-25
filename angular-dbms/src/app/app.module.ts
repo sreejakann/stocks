@@ -15,6 +15,7 @@ import {DataSource} from '@angular/cdk/collections';
 import { FilterPipe } from './pipes/filter.pipe';
 
 
+
 import {
   MatAutocompleteModule,
   MatFormFieldModule,
@@ -27,21 +28,30 @@ import {
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { GraphComponent } from './graph/graph.component';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+
+import * as FusionCharts from 'fusioncharts';
+import * as Charts from 'fusioncharts/fusioncharts.charts';
+import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
+
+import { FusionChartsModule } from 'angular4-fusioncharts';
 
 export const router: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'graph', component: GraphComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' }
    ];
 
-
+FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
+    GraphComponent,
     FilterPipe,
   ],
   imports: [
@@ -60,6 +70,7 @@ export const router: Routes = [
     MatTabsModule,
     FlexLayoutModule,
     ReactiveFormsModule,
+    FusionChartsModule.forRoot(FusionCharts, Charts, FintTheme),
     RouterModule.forRoot(
       router,
       { enableTracing: true } // <-- debugging purposes only

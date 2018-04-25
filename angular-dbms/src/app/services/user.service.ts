@@ -25,6 +25,8 @@ export class UserService {
       return this.http.get(url, {headers: headers})
       .map((response: Response) => {
           let user = response.json();
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          console.log(JSON.parse(localStorage.getItem('currentUser')));
       });
     }
 
@@ -42,6 +44,7 @@ export class UserService {
           let user = response.json();
           console.log(user);
           if (user.status==200) {
+              localStorage.setItem('currentUser', JSON.stringify(user));
               console.log("success");
             }
         });
