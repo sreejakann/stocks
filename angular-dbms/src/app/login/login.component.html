@@ -1,6 +1,4 @@
---<mat-toolbar color="primary">
-          <span style="margin-right:25px;">Stock App</span>
-</mat-toolbar>
+
 
 <mat-card class="jumbotron">
 
@@ -10,13 +8,13 @@
           <h1 class="title">Welcome to Stocks App</h1>
           <mat-card-content>
               <div class="form-group">
-                <label>Username</label>
-                  <input class="form-control" #usernameControl="ngModel" placeholder="username" [(ngModel)]="username" name="username" maxlength="70" username required>
+                <label></label>
+                  <input class="form-control username" #usernameControl="ngModel" placeholder="username" [(ngModel)]="username" name="username" maxlength="70" username required>
               </div>
-
+			<br>
               <div class="form-group">
-                <label>Password</label>
-                  <input class="form-control" #passwordControl="ngModel" placeholder="password" [(ngModel)]="password" name="password" maxlength="70" password required>
+                <label></label>
+                  <input class="form-control password" #passwordControl="ngModel" placeholder="password" [(ngModel)]="password" name="password" type="password" maxlength="70" password required>
               </div>
           </mat-card-content>
         <div style="display:flex;justify-content:space-around;">

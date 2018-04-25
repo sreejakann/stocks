@@ -13,6 +13,7 @@ import { UserService } from './services/user.service';
 import { StockService } from './services/stocks.service';
 import {DataSource} from '@angular/cdk/collections';
 import { FilterPipe } from './pipes/filter.pipe';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 
@@ -64,6 +65,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
     MatTableModule,
     MatAutocompleteModule,
     MatFormFieldModule,
+    BrowserAnimationsModule,
     MatCardModule,
     MatSelectModule,
     MatInputModule,

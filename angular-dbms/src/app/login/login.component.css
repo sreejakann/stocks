@@ -1,9 +1,10 @@
+
 .jumbotron {
     padding-top: 30px;
     padding-bottom: 30px;
     margin-bottom: 30px;
     color: black;
-    background-color: darkcyan;
+    background-color: white;
     width:400px;
     top:75px;
     margin:0 auto;
@@ -14,7 +15,7 @@
 }
 
 .container {
-    background-color: darkcyan;
+    background-color: white;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
@@ -22,9 +23,16 @@
     border: 5px solid transparent;
 }
 
+.title[_ngcontent-c2]{
+	
+	margin-left:10px;
+}
 
+.form-control[_ngcontent-c2]{
+	margin-left:-19px;
+}
 .form-control {
-  margin-left: 40px;
+  margin-left: 20px;
   border-radius: 5px;
 }
 
@@ -35,4 +43,10 @@
 .title {
   font-size: 120%;
   margin-left: 70px;
+}
+
+.mat-toolbar.mat-primary {
+    background: #3f51b5;
+    color: #fff;
+    justify-content: center;
 }
