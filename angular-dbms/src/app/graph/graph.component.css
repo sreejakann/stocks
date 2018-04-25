@@ -1,0 +1,20 @@
+.toolbar {
+	display: flex;
+	//background-color: blue;
+	left: 800px;
+}
+
+.tb {
+  display: flex;
+  //background-color: black;
+}
+
+.chart {
+	display: flex;
+	//border: 1px solid black;
+	max-width: 600px;
+	top: 100px;
+	left: 300px;
+	position: absolute;
+	border-radius: 5px;
+}

@@ -74,5 +74,20 @@ export class StockService {
         });
     }
 
+   getTrends(stock_id: string) {
+   		console.log("inside get trends");
+   		let url = "http://874791a2.ngrok.io/StocksApp/rest/StocksAPI/getTrends?symbol="+stock_id;
+   		console.log(url);
+   		const headers = new Headers();
+   		headers.append('access-control-allow-origin', '*');
+   		return this.http.get(url, {headers: headers})
+        .map((response: Response) => {
+          let data = response.json();
+          console.log(data);
+          localStorage.setItem('trends_data', JSON.stringify(data));
+        });
+
+   }
+
   
 }

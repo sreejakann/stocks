@@ -1,11 +1,19 @@
-<p>
-  graph works!
-</p>
+<mat-toolbar class="tb" color = "warn">
+  <span style="margin-right:25px;" color="white">Stock Market Visualizer</span>
 
-<fusioncharts
-    [width]="width"
-    [height]="height"
-    [type]="type"
-    [dataFormat]="dataFormat"
-    [dataSource]="dataSource">
-</fusioncharts>
+  <span class="toolbar">
+    <button style="margin-left:800px;" mat-button color="blue">{{username}}</button>
+  </span>
+</mat-toolbar>
+
+<div class="chart">
+<mat-card-content>
+	<fusioncharts
+   	 	[width]="width"
+    	[height]="height"
+    	[type]="type"
+    	[dataFormat]="dataFormat"
+    	[dataSource]="dataSource">
+	</fusioncharts>
+</mat-card-content>
+</div>

@@ -8,6 +8,7 @@ import { UserService } from '../services/user.service';
 import { StockService } from '../services/stocks.service';
 import {MatTableDataSource} from '@angular/material';
 import {MatButtonModule} from '@angular/material';
+import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -24,7 +25,7 @@ export class HomeComponent implements OnInit {
   
   public isVisible: boolean = true;
 
-  displayedColumns = ['symbol', 'stock_id', 'dt', 'opening','high', 'low','closing','volume', 'actions'];
+  displayedColumns = ['symbol', 'stock_id', 'dt', 'opening','high', 'low','closing','volume', 'actions', 'trends'];
   dataSource = new MatTableDataSource();
 
   username = JSON.parse(localStorage.getItem('currentUser')).username;
@@ -46,6 +47,17 @@ export class HomeComponent implements OnInit {
     this.stockService.addFav(e.stock_id)
         .subscribe();
   }
+
+  getTrends(e){
+    console.log(e);
+    localStorage.setItem('company_name', e.symbol);
+    this.stockService.getTrends(e.stock_id)
+    .subscribe(status => {
+        console.log("Inside subscribe");
+        this.router.navigate(['graph']);
+    });
+    
+  }
   
 
   applyFilter(filterValue: string) {
@@ -54,7 +66,7 @@ export class HomeComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  constructor(private stockService : StockService) { }
+  constructor(private router: Router, private stockService : StockService) { }
 
   fav_columns = ['stockName', 'price', 'change'];
   favSource = new FavoritesDataSource(this.stockService);

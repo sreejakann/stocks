@@ -14,38 +14,26 @@ export class GraphComponent implements OnInit {
     dataFormat = 'json';
     dataSource;
     title = 'Angular4 FusionCharts Sample';
+    
+    username = JSON.parse(localStorage.getItem('currentUser')).username;
+    comp_title = "Trends for "+localStorage.getItem('company_name');
 
     constructor() {
+    	console.log("test comp name");
+    	console.log(localStorage.getItem('company_name'));
         this.dataSource = {
             "chart": {
-                "caption": "Harry's SuperMart",
-                "subCaption": "Top 5 stores in last month by revenue",
+                "caption": this.comp_title,
                 "numberprefix": "$",
-                "theme": "fint"
+                "theme": "fint",
+                "showValues": "0",
+                "drawAnchors": "0"
             },
-            "data": [
-                {
-                    "label": "Bakersfield Central",
-                    "value": "880000"
-                },
-                {
-                    "label": "Garden Groove harbour",
-                    "value": "730000"
-                },
-                {
-                    "label": "Los Angeles Topanga",
-                    "value": "590000"
-                },
-                {
-                    "label": "Compton-Rancho Dom",
-                    "value": "520000"
-                },
-                {
-                    "label": "Daly City Serramonte",
-                    "value": "330000"
-                }
-            ]
+            
+            "data": JSON.parse(localStorage.getItem('trends_data'))
         }
+
+        console.log(this.dataSource);
     }
 
 

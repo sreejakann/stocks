@@ -18,7 +18,7 @@
 
     <ng-container matColumnDef="symbol">
       <mat-header-cell *matHeaderCellDef > Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+      <mat-cell *matCellDef="let element" (click) = "getTrends(element.stock_id)"> {{element.symbol}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="stock_id">
@@ -56,19 +56,24 @@
       <mat-cell *matCellDef="let element"> {{element.volume}} </mat-cell>
     </ng-container>
 
-    <!-- Symbol Column -->
-
 
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef> Follow </mat-header-cell>
       <mat-cell *matCellDef="let row" >
-         <button mat-raised-button color="warn" *ngIf="isVisible" >Follow </button> 
-         <button mat-raised-button color="accent" *ngIf="!isVisible"> Following </button> 
+         <button mat-raised-button color="warn" *ngIf="isVisible" (click) = "addFav(row)">Follow </button> 
+         <button mat-raised-button color="grey" *ngIf="!isVisible"> Following </button> 
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="trends">
+      <mat-header-cell *matHeaderCellDef> Show Trends </mat-header-cell>
+      <mat-cell *matCellDef="let row" >
+         <button mat-raised-button color="primary" (click) = "getTrends(row)">Show Trends </button>  
       </mat-cell>
     </ng-container> 
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" (click) = "addFav(row)"> </mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" > </mat-row>
   </mat-table>
 
 </div>
