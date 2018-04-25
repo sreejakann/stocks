@@ -1,12 +1,12 @@
-<mat-toolbar class="tb" color = "accent">
+<mat-toolbar class="tb" color = "warn">
   <span style="margin-right:25px;" color="white">Stock Market Visualizer</span>
 
   <span class="toolbar">
-    <button mat-button color="blue">{{username}}</button>
+    <button style="margin-left:800px;" mat-button color="blue">{{username}}</button>
   </span>
 </mat-toolbar>
 
-<p class="title">Stocks Table</p>
+<p style="margin-left:300px;" class="title">Stocks Table</p>
 <div class="stocks-container">
   <div class="stocks-header">
     <mat-form-field>
@@ -16,8 +16,13 @@
   
   <mat-table class="stocks-table mat-elevation-z8" #table [dataSource]="dataSource">
 
+    <ng-container matColumnDef="symbol">
+      <mat-header-cell *matHeaderCellDef > Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="stock_id">
-      <mat-header-cell *matHeaderCellDef> stock_id </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.stock_id}} </mat-cell>
     </ng-container>
 
@@ -52,16 +57,13 @@
     </ng-container>
 
     <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
-      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-    </ng-container>
+
 
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef> Follow </mat-header-cell>
       <mat-cell *matCellDef="let row" >
-         <button mat-raised-button color="blue" *ngIf="isVisible" >Follow </button> 
-         <button mat-raised-button color="blue" *ngIf="!isVisible"> Following </button> 
+         <button mat-raised-button color="warn" *ngIf="isVisible" >Follow </button> 
+         <button mat-raised-button color="accent" *ngIf="!isVisible"> Following </button> 
       </mat-cell>
     </ng-container> 
 
@@ -103,9 +105,9 @@
       <mat-cell *matCellDef="let gainers"> {{gainers.companyName}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="stockPrice">
+    <ng-container matColumnDef="stockPrice" color="green">
       <mat-header-cell *matHeaderCellDef> stockPrice </mat-header-cell>
-      <mat-cell *matCellDef="let gainers"> {{gainers.stockPrice}} </mat-cell>
+      <mat-cell class="font-gainers" *matCellDef="let gainers"> {{gainers.stockPrice}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="gainers_columns"></mat-header-row>
@@ -125,7 +127,7 @@
 
     <ng-container matColumnDef="stockPrice">
       <mat-header-cell *matHeaderCellDef> stockPrice </mat-header-cell>
-      <mat-cell *matCellDef="let losers"> {{losers.stockPrice}} </mat-cell>
+      <mat-cell class="font-losers" *matCellDef="let losers"> {{losers.stockPrice}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="losers_columns"></mat-header-row>

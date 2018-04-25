@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   
   public isVisible: boolean = true;
 
-  displayedColumns = ['stock_id', 'dt', 'opening','high', 'low','closing','volume', 'symbol', 'actions'];
+  displayedColumns = ['symbol', 'stock_id', 'dt', 'opening','high', 'low','closing','volume', 'actions'];
   dataSource = new MatTableDataSource();
 
   username = JSON.parse(localStorage.getItem('currentUser')).username;

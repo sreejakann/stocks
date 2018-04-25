@@ -8,13 +8,21 @@ panel {
   left: 260px;
 }
 
+.font-gainers {
+  color: limegreen;
+}
+
+.font-losers {
+  color: red;
+}
+
 .stocks-container {
   display: flex;
   flex-direction: column;
   max-height: 400px;
-  min-width: 700px;
+  min-width: 1000px;
   position: absolute;
-  left: 250px;
+  left: 100px;
   top: 85px;
 }
 
@@ -22,7 +30,7 @@ panel {
   display: flex;
   flex-direction: column;
   max-height: 400px;
-  min-width: 700px;
+  min-width: 1000px;
   position: relative;
   left: 10px;
   border: 1px solid black;
