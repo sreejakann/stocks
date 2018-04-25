@@ -2,10 +2,12 @@
   <span style="margin-right:25px;" color="white">Stock Market Visualizer</span>
 
   <span class="toolbar">
-    <button style="margin-left:800px;" mat-button color="blue">{{username}}</button>
-    <button style="margin-left:900px;" mat-button color="blue" (click) ="getCount()"> count </button>
+    <button style="margin-left:600px;" mat-button color="blue">{{username}}</button>
+    
   </span>
+
 </mat-toolbar>
+
 
 <p style="margin-left:300px;" class="title">Stocks Table</p>
 <div class="stocks-container">
@@ -139,4 +141,11 @@
     <mat-header-row *matHeaderRowDef="losers_columns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: losers_columns;"></mat-row>
   </mat-table>
+
+
+</div>
+
+<div class = "count">
+  <button style="top:100px;" mat-button color="blue" (click) ="getCount()"> count </button>
+  <p style="margin-left:800px;" class="title">{{count}}</p>
 </div>

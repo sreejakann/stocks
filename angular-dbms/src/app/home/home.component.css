@@ -122,11 +122,18 @@ panel {
 .toolbar {
 	display: flex;
 	//background-color: blue;
-	left: 800px;
+	left: 600px;
 }
+
+
 
 .tb {
   display: flex;
   //background-color: black;
+}
+
+.count {
+  display: flex;
+
 }
 

@@ -23,6 +23,8 @@ export class HomeComponent implements OnInit {
 
   public searchString: string;
 
+  count: number;
+
   idArr = [];
 
   public isVisible:boolean = true;
@@ -39,7 +41,15 @@ export class HomeComponent implements OnInit {
     }
     );
 
+  }
 
+
+  getCount(){
+  this.stockService.getCount()
+  .subscribe(data => {
+  console.log(data);
+  this.count = data;
+  })
   }
 
   contains(id){

@@ -17,6 +17,7 @@ export class StockService {
   private gainersUrl = 'http://874791a2.ngrok.io/StocksApp/rest/StocksAPI/topGainers';
   private favoritesUrl = 'http://874791a2.ngrok.io/StocksApp/rest/StocksAPI/getFavorites?userId=';
   private symUrl = 'http://874791a2.ngrok.io/StocksApp/rest/StocksAPI/getFavoriteSymbolsString?userId=';
+  private countUrl = 'http://874791a2.ngrok.io/StocksApp/rest/StocksAPI/getTotalTuples';
   
   
  constructor(private http: Http) { }
@@ -74,6 +75,15 @@ export class StockService {
         .map((response: Response) => {
           
         });
+    }
+
+    getCount(){
+    	console.log("inside get count");
+    	const headers = new Headers();
+        headers.append('access-control-allow-origin', '*');
+        return this.http.get(this.countUrl, {headers:headers})
+  		.map(res => res.json());
+
     }
 
    getTrends(stock_id: string) {
