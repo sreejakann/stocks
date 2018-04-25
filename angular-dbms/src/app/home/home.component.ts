@@ -35,6 +35,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
+    this.getSymbols();
+
     this.stockService.getStocks().subscribe(
     data => {
     this.dataSource.data = data;
@@ -43,6 +45,13 @@ export class HomeComponent implements OnInit {
 
   }
 
+  getSymbols(){
+  this.stockService.getSymbols()
+  .subscribe(data => {
+  this.idArr = Object.assign([], data);
+ 
+  })
+  }
 
   getCount(){
   this.stockService.getCount()
