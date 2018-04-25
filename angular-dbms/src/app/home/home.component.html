@@ -1,25 +1,31 @@
-<mat-toolbar color="warn">
-  <span style="margin-right:25px;">Stock Market Visualizer</span>
+<mat-toolbar class="tb" color = "accent">
+  <span style="margin-right:25px;" color="white">Stock Market Visualizer</span>
 
   <span class="toolbar">
     <button mat-button color="blue">User</button>
   </span>
 </mat-toolbar>
 
+<p class="title">Stocks Table</p>
+<div class="stocks-container">
+  <div class="stocks-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  
+  <mat-table class="stocks-table mat-elevation-z8" #table [dataSource]="dataSource">
 
-  <mat-table class="example-container mat-elevation-z8" [dataSource]="dataSource">
     <ng-container matColumnDef="stock_id">
       <mat-header-cell *matHeaderCellDef> stock_id </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.stock_id}} </mat-cell>
     </ng-container>
 
-    <!-- Name Column -->
     <ng-container matColumnDef="dt">
       <mat-header-cell *matHeaderCellDef> dt </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.dt}} </mat-cell>
     </ng-container>
 
-    <!-- Weight Column -->
     <ng-container matColumnDef="opening">
       <mat-header-cell *matHeaderCellDef> opening </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.opening}} </mat-cell>
@@ -55,20 +61,23 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 
+</div>
 
-  <mat-table class="example-container1 mat-elevation-z8" [dataSource]="recSource">
+<!--
+<div class="recommendation-container mat-elevation-z8">
+<p> Rec table </p>
+  <mat-table class="recommendation-table mat-elevation-z8" [dataSource]="recSource">
+  <p class="title">Rec Table</p>
     <ng-container matColumnDef="company">
       <mat-header-cell *matHeaderCellDef> company </mat-header-cell>
       <mat-cell *matCellDef="let recommendation"> {{recommendation.company}} </mat-cell>
     </ng-container>
 
-    <!-- Name Column -->
     <ng-container matColumnDef="closing">
       <mat-header-cell *matHeaderCellDef> closing </mat-header-cell>
       <mat-cell *matCellDef="let recommendation"> {{recommendation.closing}} </mat-cell>
     </ng-container>
 
-    <!-- Weight Column -->
     <ng-container matColumnDef="change">
       <mat-header-cell *matHeaderCellDef> Change </mat-header-cell>
       <mat-cell *matCellDef="let recommendation"> {{recommendation.change}} </mat-cell>
@@ -78,7 +87,10 @@
     <mat-row *matRowDef="let row; columns: rec_columns;"></mat-row>
   </mat-table>
 
-  <mat-table class="example-container2 mat-elevation-z8" [dataSource]="favSource">
+ -->
+<div class = "favorites-container">
+  <p> Favorite Stocks </p>
+  <mat-table class="favorites-table mat-elevation-z8" [dataSource]="favSource">
     <ng-container matColumnDef="company">
       <mat-header-cell *matHeaderCellDef> company </mat-header-cell>
       <mat-cell *matCellDef="let favorites"> {{favorites.company}} </mat-cell>
@@ -99,8 +111,11 @@
     <mat-header-row *matHeaderRowDef="fav_columns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: fav_columns;"></mat-row>
   </mat-table>
+</div>
 
-<mat-table class="example-container3 mat-elevation-z8" [dataSource]="gainersSource">
+<div class="gainers-container">
+  <p> Top Gainers </p>
+<mat-table class="gainers-table mat-elevation-z8" [dataSource]="gainersSource">
     <ng-container matColumnDef="company">
       <mat-header-cell *matHeaderCellDef> company </mat-header-cell>
       <mat-cell *matCellDef="let gainers"> {{gainers.companyName}} </mat-cell>
@@ -115,9 +130,11 @@
     <mat-row *matRowDef="let row; columns: gainers_columns;"></mat-row>
   </mat-table>
 
+</div>
 
-
-  <mat-table class="example-container4 mat-elevation-z8" [dataSource]="losersSource">
+<div class="losers-container">
+  <p> Top Losers </p>
+  <mat-table class="losers-table mat-elevation-z8" [dataSource]="losersSource">
     <ng-container matColumnDef="company">
       <mat-header-cell *matHeaderCellDef> company </mat-header-cell>
       <mat-cell *matCellDef="let losers"> {{losers.companyName}} </mat-cell>
@@ -133,3 +150,4 @@
     <mat-header-row *matHeaderRowDef="losers_columns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: losers_columns;"></mat-row>
   </mat-table>
+</div>

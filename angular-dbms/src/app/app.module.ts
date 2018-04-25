@@ -12,6 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { StockService } from './services/stocks.service';
 import {DataSource} from '@angular/cdk/collections';
+import { FilterPipe } from './pipes/filter.pipe';
+
 
 import {
   MatAutocompleteModule,
@@ -39,7 +41,8 @@ export const router: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +68,9 @@ export const router: Routes = [
   providers: [
   UserService,
   StockService
+  ],
+  exports: [
+    FilterPipe
   ],
   bootstrap: [
   AppComponent,

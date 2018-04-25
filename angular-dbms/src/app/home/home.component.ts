@@ -3,8 +3,10 @@ import {MatTableModule, MatToolbarModule} from '@angular/material';
 import { Stocks } from '../stocks';
 import { Losers } from '../losers';
 import { Gainers } from '../gainers';
+import { Favorites } from '../favorites';
 import { UserService } from '../services/user.service';
 import { StockService } from '../services/stocks.service';
+import {MatTableDataSource} from '@angular/material';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -17,22 +19,35 @@ import {DataSource} from '@angular/cdk/collections';
 })
 export class HomeComponent implements OnInit {
 
+  public searchString: string;
   
 
-  ngOnInit() {
-  }
+ 
 
   displayedColumns = ['stock_id', 'dt', 'opening','high', 'low','closing','volume', 'symbol'];
-  dataSource = new StocksDataSource(this.stockService);
+  dataSource = new MatTableDataSource();
+
+  ngOnInit() {
+    this.stockService.getStocks().subscribe(
+    data => {
+    this.dataSource.data = data;
+    }
+    );
+
+
+  }
   
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
 
   constructor(private stockService : StockService) { }
 
-  rec_columns = ['company','closing','change'];
-  recSource = rec_data;
-
   fav_columns = ['company', 'closing', 'performance'];
-  favSource = fav_data;
+  favSource = new FavoritesDataSource(this.stockService);
 
   gainers_columns = ['company','stockPrice'];
   gainersSource = new GainersDataSource(this.stockService);
@@ -41,15 +56,6 @@ export class HomeComponent implements OnInit {
   losersSource = new LosersDataSource(this.stockService);
 }
 
-export class StocksDataSource extends DataSource<any> {
-  constructor(private stockService: StockService) {
-    super();
-  }
-  connect(): Observable<Stocks[]> {
-    return this.stockService.getStocks();
-  }
-  disconnect() {}
-}
 
 export class LosersDataSource extends DataSource<any> {
   constructor(private stockService: StockService) {
@@ -71,42 +77,16 @@ export class GainersDataSource extends DataSource<any> {
   disconnect() {}
 }
 
-
-export interface recommendation {
-  company: string;
-  closing: number;
-  change: number;
+export class FavoritesDataSource extends DataSource<any> {
+  constructor(private stockService: StockService) {
+    super();
+  }
+  connect(): Observable<Favorites[]> {
+    return this.stockService.getFavorites();
+  }
+  disconnect() {}
 }
 
-const rec_data: recommendation[] = [
-  {company: 'Audible', closing: 1.0079, change: 2},
-  {company: 'Audible', closing: 1.0079, change: 2},
-  {company: 'Audible', closing: 1.0079, change: 2},
-  {company: 'Audible', closing: 1.0079, change: 2},
-];
-
-export interface favorites {
-  company: string;
-  closing: number;
-  performance: string;
-}
-
-const fav_data: favorites[] = [
-  {company: 'Audible', closing: 1.0079, performance: 'good'},
-  {company: 'Google', closing: 1.0079, performance: 'good'},
-  {company: 'Dell', closing: 1.0079, performance: 'good'},
-  {company: 'facebook', closing: 1.0079, performance: 'good'},
-];
 
 
-export interface gainers {
-  company: string;
-  stockPrice: number;
-}
 
-const losers_data: gainers[] = [
-  {company: 'Audible', stockPrice: 1.0079},
-  {company: 'Audible', stockPrice: 1.0079},
-  {company: 'Audible', stockPrice: 1.0079},
-  {company: 'Audible', stockPrice: 1.0079},
-];

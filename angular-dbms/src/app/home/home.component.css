@@ -2,68 +2,122 @@ panel {
     background-image: url("https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX9364891.jpg"); 
 }
 
-.example-container {
+.title {
   display: flex;
-  flex-direction: column;
-  max-height: 300px;
-  min-width: 300px;
   position: relative;
-  left: 0px;
-  border: 2px solid #73AD21;
+  left: 260px;
 }
 
-.example-container1 {
-  display: block;
+.stocks-container {
+  display: flex;
   flex-direction: column;
-  max-height: 300px;
-  min-width: 500px;
+  max-height: 400px;
+  min-width: 700px;
+  position: absolute;
+  left: 250px;
+  top: 85px;
+}
+
+.stocks-table {
+  display: flex;
+  flex-direction: column;
+  max-height: 400px;
+  min-width: 700px;
+  position: relative;
+  left: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.stocks-header {
+  //display: flex;
+  min-height: 10px;
+  padding: 8px 10px 0;
+
+}
+
+
+.favorites-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 350px;
+  min-width: 450px;
   position: absolute;
   left: 10px;
-  top: 400px;
-  border: 2px solid #73AD21;
+  top: 500px;
+  //border: 2px solid #73AD21;
 }
 
-.example-container2 {
+.favorites-table {
   display: flex;
   flex-direction: column;
   max-height: 200px;
-  min-width: 500px;
+  min-width: 400px;
   position: absolute;
-  left: 750px;
-  top: 75px;
-  border: 2px solid #73AD21;
+  left: 0px;
+  top: 45px;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
-.example-container3 {
+.gainers-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 250px;
+  min-width: 250px;
+  position: absolute;
+  left: 550px;
+  top: 500px;
+  //border: 2px solid #73AD21;
+}
+
+.gainers-table {
   display: flex;
   flex-direction: column;
   max-height: 200px;
-  min-width: 500px;
+  min-width: 250px;
   position: absolute;
-  left: 750px;
-  top: 300px;
-  border: 2px solid #73AD21;
+  left: 0px;
+  top: 45px;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
-.example-container4 {
+.losers-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 250px;
+  min-width: 250px;
+  position: absolute;
+  left: 950px;
+  top: 500px;
+  //border: 1px solid black;
+}
+
+.losers-table {
   display: flex;
   flex-direction: column;
   max-height: 200px;
-  min-width: 500px;
+  min-width: 250px;
   position: absolute;
-  left: 750px;
-  top: 525px;
-  border: 2px solid #73AD21;
+  left: 0px;
+  top: 45px;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 .mat-table {
   overflow: auto;
-  max-width: 600px;
-  background-color: skyblue;
+  max-width: 800px;
 }
 
 .toolbar {
 	display: flex;
-	background-color: blue;
+	//background-color: blue;
 	left: 800px;
+}
+
+.tb {
+  display: flex;
+  //background-color: black;
 }
